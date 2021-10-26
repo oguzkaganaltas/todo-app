@@ -21,7 +21,7 @@ public class TaskController {
 
     @GetMapping
     public ResponseEntity<List<Task>> getTasks(){
-        return new ResponseEntity<>(taskService.getAllTasks(), OK);
+        return new ResponseEntity<>(this.taskService.getAllTasks(), OK);
     }
 
     @GetMapping("/{id}")
@@ -31,7 +31,7 @@ public class TaskController {
 
     @PostMapping
     public ResponseEntity<Task> createTask(@RequestBody Task newTask){
-        return new ResponseEntity<>(taskService.createTask(newTask), CREATED);
+        return new ResponseEntity<>(this.taskService.createTask(newTask), CREATED);
     }
 
     @PutMapping("/{id}")
@@ -46,11 +46,11 @@ public class TaskController {
 
     @DeleteMapping("{id}")
     public ResponseEntity<Void> deleteTask(@PathVariable int id){
-        taskService.deleteTask(id);
+        this.taskService.deleteTask(id);
         return new ResponseEntity<>(OK);
     }
 
     private Task getResult(int id) {
-        return taskService.getTaskById(id);
+        return this.taskService.getTaskById(id);
     }
 }
