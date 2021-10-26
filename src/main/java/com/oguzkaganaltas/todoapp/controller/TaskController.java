@@ -1,6 +1,7 @@
 package com.oguzkaganaltas.todoapp.controller;
 
 import com.oguzkaganaltas.todoapp.model.Task;
+import com.oguzkaganaltas.todoapp.service.ProjectService;
 import com.oguzkaganaltas.todoapp.service.TaskService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ import static org.springframework.http.HttpStatus.OK;
 public class TaskController {
 
     private final TaskService taskService;
-
+    private final ProjectService projectService;
     @GetMapping
     public ResponseEntity<List<Task>> getTasks(){
         return new ResponseEntity<>(this.taskService.getAllTasks(), OK);
@@ -29,12 +30,13 @@ public class TaskController {
         return new ResponseEntity<>(getResult(id), OK);
     }
 
-    @PostMapping
-    public ResponseEntity<Task> createTask(@RequestBody Task newTask){
+    @PostMapping("/new-task/{project_id}")
+    public ResponseEntity<Task> createTask(@PathVariable int project_id,@RequestBody Task newTask){
+        newTask.setProject(projectService.getProjectById(project_id));
         return new ResponseEntity<>(this.taskService.createTask(newTask), CREATED);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{id}")//todo: fix
     public ResponseEntity<Void> getTask(@PathVariable int id, @RequestBody Task newTask){
         Task oldTask = getResult(id);
         Objects.requireNonNull(oldTask).setTitle(newTask.getTitle());
