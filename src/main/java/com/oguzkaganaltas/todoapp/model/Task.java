@@ -13,10 +13,10 @@ import java.util.Date;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "task")
+@Table(name = "tasks")
 public class Task {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "task_id")
     private int id;
 
@@ -25,7 +25,7 @@ public class Task {
     private Date date = new Date();
     private boolean status;
 
-    @ManyToOne
-    @JoinColumn(name = "project_id")
-    private Project project;
+   @ManyToOne
+   @JoinColumn(name = "project_id")
+   private Project project;
 }
