@@ -6,6 +6,9 @@ import javax.persistence.Id;
 
 @Entity
 public class Task {
+
+    @Id
+    @GeneratedValue
     private int id;
     private String title;
     private String note;
@@ -18,8 +21,7 @@ public class Task {
         this.status = status;
     }
 
-    @Id
-    @GeneratedValue
+
     public int getId() {
         return id;
     }
