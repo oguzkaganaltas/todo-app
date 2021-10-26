@@ -1,56 +1,30 @@
 package com.oguzkaganaltas.todoapp.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import java.util.ArrayList;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Table(name = "project")
 public class Project {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "project_id")
     private int id;
+
+    @OneToMany(mappedBy = "project")
+    private Set<Task> tasks = new HashSet<>();
+
     private String name;
-    private final ArrayList<Task> todoItems;
 
-    public Project(int id, String name) {
-        this.id = id;
-        this.name = name;
-        this.todoItems = new ArrayList<>();
-    }
-
-    public void addItem(Task todoItem){
-        this.todoItems.add(todoItem);
-    }
-
-    public Task findItemById(int id){
-        for (Task item :
-                this.todoItems) {
-            if (item.getId() == id) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    public void removeItem(Task item){
-        this.todoItems.remove(item);
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }
