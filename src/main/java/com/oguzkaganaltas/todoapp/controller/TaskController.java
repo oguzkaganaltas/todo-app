@@ -28,6 +28,11 @@ public class TaskController {
         return new ResponseEntity<>(getResult(task_id), OK);
     }
 
+
+    private boolean isAnyMatch(Task newTask) {
+        return taskService.getAllTasks().stream().anyMatch(obj -> obj.getId() == newTask.getId());
+    }
+
     @PostMapping("/new-task/{project_id}")
     public ResponseEntity<Task> createTask(@PathVariable int project_id,@RequestBody Task newTask){
         newTask.setProject(projectService.getProjectById(project_id));
