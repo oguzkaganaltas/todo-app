@@ -55,6 +55,4 @@ public class ProjectController {
     private Project getResult(int id) {
         return this.projectService.getProjectById(id);
     }
-
-
 }
