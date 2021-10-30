@@ -39,8 +39,8 @@ public class ProjectController {
         return new ResponseEntity<>(this.projectService.createProject(newProject), CREATED);
     }
 
-    @PutMapping("/{id}")//todo: complete
-    public ResponseEntity<Void> getTask(@PathVariable int id, @RequestBody Task newProject){
+    @PutMapping("/update/{project_id}")
+    public ResponseEntity<Void> updateProject(@PathVariable int id, @RequestBody Project newProject){
         Project oldProject = getResult(id);
         return new ResponseEntity<>(OK);
     }
