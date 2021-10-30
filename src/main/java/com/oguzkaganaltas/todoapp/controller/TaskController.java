@@ -46,8 +46,9 @@ public class TaskController {
     public ResponseEntity<Task> getTask(@PathVariable int task_id, @RequestBody Task newTask){
         Task oldTask = getResult(task_id);
         oldTask.setStatus(newTask.isStatus());
-
-        return new ResponseEntity<>(OK);
+        oldTask.setTitle(newTask.getTitle());
+        oldTask.setNote(newTask.getNote());
+        return new ResponseEntity<>(taskService.createTask(oldTask),OK);
     }
 
     @DeleteMapping("{id}")
