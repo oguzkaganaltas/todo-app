@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Getter
@@ -30,6 +31,25 @@ public class User {
 
     @Column(name = "last_name", nullable = false, length = 20)
     private String lastName;
+
+    @Column(name = "status", nullable = false, length = 1)
+    private boolean status;
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (!(object instanceof User user)) {
+            return false;
+        }
+        return Objects.equals(email, user.email) &&
+                Objects.equals(password, user.password);
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, email, password);
+    }
 }
 
 
