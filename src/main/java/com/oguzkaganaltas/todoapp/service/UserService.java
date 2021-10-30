@@ -1,6 +1,5 @@
 package com.oguzkaganaltas.todoapp.service;
 
-import com.oguzkaganaltas.todoapp.model.Task;
 import com.oguzkaganaltas.todoapp.model.User;
 import com.oguzkaganaltas.todoapp.repository.UserRepository;
 import lombok.AllArgsConstructor;
