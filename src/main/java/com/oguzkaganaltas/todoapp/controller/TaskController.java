@@ -35,6 +35,9 @@ public class TaskController {
 
     @PostMapping("/new-task/{project_id}")
     public ResponseEntity<Task> createTask(@PathVariable int project_id,@RequestBody Task newTask){
+        if (isAnyMatch(newTask)){
+            return new ResponseEntity<>(CONFLICT);
+        }
         newTask.setProject(projectService.getProjectById(project_id));
         return new ResponseEntity<>(this.taskService.createTask(newTask), CREATED);
     }
