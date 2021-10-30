@@ -43,7 +43,7 @@ public class TaskController {
     }
 
     @PutMapping("/update/{task_id}")
-    public ResponseEntity<Task> getTask(@PathVariable int task_id, @RequestBody Task newTask){
+    public ResponseEntity<Task> updateTask(@PathVariable int task_id, @RequestBody Task newTask){
         Task oldTask = getResult(task_id);
         oldTask.setStatus(newTask.isStatus());
         oldTask.setTitle(newTask.getTitle());
