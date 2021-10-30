@@ -17,8 +17,10 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User createUser(User newUser){
-        return userRepository.save(newUser);
+    public void createUser(User newUser){
+        if (this.isValidEmailAddress(newUser.getEmail())) {
+            userRepository.save(newUser);
+        }
     }
 
     public void deleteUser(int id) {
