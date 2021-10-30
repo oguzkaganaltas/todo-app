@@ -5,6 +5,9 @@ import com.oguzkaganaltas.todoapp.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 @Service
@@ -20,6 +23,25 @@ public class UserService {
         if (this.isValidEmailAddress(newUser.getEmail())) {
             userRepository.save(newUser);
         }
+    }
+
+    public String hashSHA512(String password){
+        String encodedPass = new String("");
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-512");
+            byte[] byteOfText = password.getBytes(StandardCharsets.UTF_8);
+            byte[] hashedByteOfText = md.digest(byteOfText);
+            StringBuilder hexString = new StringBuilder();
+            for(int i: hashedByteOfText){
+                hexString.append(String.format("%02x", 0XFF & i));
+            }
+
+            encodedPass = hexString.toString();
+            return encodedPass;
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return encodedPass;
     }
 
     public void deleteUser(int id) {
