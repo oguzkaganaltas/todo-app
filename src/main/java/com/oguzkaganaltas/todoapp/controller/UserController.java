@@ -42,7 +42,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<User> loginUser(@RequestBody User user){
+    public ResponseEntity<String> loginUser(@RequestBody User user){
         List<User> users = userService.getAllUsers();
         for (User other : users) {
             if (other.getPassword().equals(userService.hashSHA512(user.getPassword())) && other.getEmail().equals(user.getEmail())) {
