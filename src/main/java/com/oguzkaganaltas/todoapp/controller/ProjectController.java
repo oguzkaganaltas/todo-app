@@ -22,9 +22,9 @@ public class ProjectController {
         return new ResponseEntity<>(this.projectService.getAllProjects(), OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Project> getProject(@PathVariable int id){
-        return new ResponseEntity<>(this.projectService.getProjectById(id),OK);
+    @GetMapping("/{project_id}")
+    public ResponseEntity<Project> getProject(@PathVariable int project_id){
+        return new ResponseEntity<>(this.projectService.getProjectById(project_id),OK);
     }
 
     @PostMapping()
