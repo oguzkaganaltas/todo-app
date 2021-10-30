@@ -58,8 +58,8 @@ public class UserController {
     public ResponseEntity<User> logoutUser(@RequestBody String sessionId){
         List<User> users = userService.getAllUsers();
         for (User other : users) {
-            if (other.equals(user)) {
-                other.setStatus(false);
+            if (other.getSessionId().equals(sessionId)) {
+                other.setSessionId(null);
                 userService.updateUser(other);
                 return new ResponseEntity<>(OK);
             }
