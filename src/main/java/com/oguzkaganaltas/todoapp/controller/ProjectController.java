@@ -43,7 +43,7 @@ public class ProjectController {
     public ResponseEntity<Project> updateProject(@PathVariable int project_id, @RequestBody Project newProject){
         Project oldProject = getResult(project_id);
         oldProject.setName(newProject.getName());
-        return new ResponseEntity<>(OK);
+        return new ResponseEntity<>(projectService.createProject(oldProject),OK);
     }
 
     @DeleteMapping("/remove/{project_id}")
