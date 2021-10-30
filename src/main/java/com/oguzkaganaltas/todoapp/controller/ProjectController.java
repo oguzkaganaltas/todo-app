@@ -46,7 +46,7 @@ public class ProjectController {
         return new ResponseEntity<>(OK);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/remove/{id}")
     public ResponseEntity<Void> deleteTask(@PathVariable int id){
         this.projectService.deleteProject(id);
         return new ResponseEntity<>(OK);
