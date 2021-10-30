@@ -40,15 +40,15 @@ public class ProjectController {
     }
 
     @PutMapping("/update/{project_id}")
-    public ResponseEntity<Void> updateProject(@PathVariable int id, @RequestBody Project newProject){
-        Project oldProject = getResult(id);
+    public ResponseEntity<Void> updateProject(@PathVariable int project_id, @RequestBody Project newProject){
+        Project oldProject = getResult(project_id);
         oldProject.setName(newProject.getName());
         return new ResponseEntity<>(OK);
     }
 
-    @DeleteMapping("/remove/{id}")
-    public ResponseEntity<Void> deleteTask(@PathVariable int id){
-        this.projectService.deleteProject(id);
+    @DeleteMapping("/remove/{project_id}")
+    public ResponseEntity<Void> deleteTask(@PathVariable int project_id){
+        this.projectService.deleteProject(project_id);
         return new ResponseEntity<>(OK);
     }
 
