@@ -21,12 +21,13 @@ public class UserService {
 
     public void createUser(User newUser){
         if (this.isValidEmailAddress(newUser.getEmail())) {
+            newUser.setPassword(hashSHA512(newUser.getPassword()));
             userRepository.save(newUser);
         }
     }
 
     public String hashSHA512(String password){
-        String encodedPass = new String("");
+        String encodedPass = "";
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-512");
             byte[] byteOfText = password.getBytes(StandardCharsets.UTF_8);
