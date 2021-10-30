@@ -33,7 +33,10 @@ public class ProjectController {
 
     @PostMapping("/new-project")
     public ResponseEntity<Project> createProject(@RequestBody Project newProject){
-        return new ResponseEntity<>(this.projectService.createProject(newProject),CREATED);
+        if (isAnyMatch(newProject)){
+            return new ResponseEntity<>(CONFLICT);
+        }
+        return new ResponseEntity<>(this.projectService.createProject(newProject), CREATED);
     }
 
     @PutMapping("/{id}")//todo: complete
