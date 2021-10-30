@@ -21,6 +21,8 @@ public class Project {
     private int id;
     @Column(name = "name")
     private String name;
+    @Column(name = "owner_id")
+    private int ownerId;
 
 
 }
