@@ -23,9 +23,9 @@ public class TaskController {
         return new ResponseEntity<>(this.taskService.getAllTasks(), OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Task> getTask(@PathVariable int id){
-        return new ResponseEntity<>(getResult(id), OK);
+    @GetMapping("/{task_id}")
+    public ResponseEntity<Task> getTask(@PathVariable int task_id){
+        return new ResponseEntity<>(getResult(task_id), OK);
     }
 
     @PostMapping("/new-task/{project_id}")
