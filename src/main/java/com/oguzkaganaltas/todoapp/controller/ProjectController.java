@@ -42,6 +42,7 @@ public class ProjectController {
     @PutMapping("/update/{project_id}")
     public ResponseEntity<Void> updateProject(@PathVariable int id, @RequestBody Project newProject){
         Project oldProject = getResult(id);
+        oldProject.setName(newProject.getName());
         return new ResponseEntity<>(OK);
     }
 
