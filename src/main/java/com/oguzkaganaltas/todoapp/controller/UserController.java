@@ -55,7 +55,7 @@ public class UserController {
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<User> logoutUser(@RequestBody User user){
+    public ResponseEntity<User> logoutUser(@RequestBody String sessionId){
         List<User> users = userService.getAllUsers();
         for (User other : users) {
             if (other.equals(user)) {
