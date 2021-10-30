@@ -42,11 +42,9 @@ public class TaskController {
         return new ResponseEntity<>(this.taskService.createTask(newTask), CREATED);
     }
 
-    @PutMapping("/{id}")//todo: fix
-    public ResponseEntity<Void> getTask(@PathVariable int id, @RequestBody Task newTask){
-        Task oldTask = getResult(id);
-        Objects.requireNonNull(oldTask).setTitle(newTask.getTitle());
-        oldTask.setNote(newTask.getNote());
+    @PutMapping("/update/{task_id}")
+    public ResponseEntity<Task> getTask(@PathVariable int task_id, @RequestBody Task newTask){
+        Task oldTask = getResult(task_id);
         oldTask.setStatus(newTask.isStatus());
 
         return new ResponseEntity<>(OK);
