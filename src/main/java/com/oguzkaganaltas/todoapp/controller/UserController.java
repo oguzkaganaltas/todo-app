@@ -48,7 +48,7 @@ public class UserController {
             if (other.getPassword().equals(userService.hashSHA512(user.getPassword())) && other.getEmail().equals(user.getEmail())) {
                 other.setSessionId(generateNewToken());
                 userService.updateUser(other);
-                return new ResponseEntity<>(OK);
+                return new ResponseEntity<>(other.getSessionId(),OK);
             }
         }
         return new ResponseEntity<>(NOT_FOUND);
