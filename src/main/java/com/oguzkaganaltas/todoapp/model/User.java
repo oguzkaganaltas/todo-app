@@ -33,7 +33,7 @@ public class User {
     private String lastName;
 
     @Column(name = "session_id", length = 128)
-    private String session_id;
+    private String sessionId;
 }
 
 
