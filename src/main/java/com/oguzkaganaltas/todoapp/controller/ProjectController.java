@@ -27,7 +27,11 @@ public class ProjectController {
         return new ResponseEntity<>(this.projectService.getProjectById(project_id),OK);
     }
 
-    @PostMapping()
+    private boolean isAnyMatch(Project newProject) {
+        return projectService.getAllProjects().stream().anyMatch(obj -> obj.getId() == newProject.getId());
+    }
+
+    @PostMapping("/new-project")
     public ResponseEntity<Project> createProject(@RequestBody Project newProject){
         return new ResponseEntity<>(this.projectService.createProject(newProject),CREATED);
     }
