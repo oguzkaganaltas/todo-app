@@ -40,7 +40,7 @@ public class ProjectController {
     }
 
     @PutMapping("/update/{project_id}")
-    public ResponseEntity<Void> updateProject(@PathVariable int project_id, @RequestBody Project newProject){
+    public ResponseEntity<Project> updateProject(@PathVariable int project_id, @RequestBody Project newProject){
         Project oldProject = getResult(project_id);
         oldProject.setName(newProject.getName());
         return new ResponseEntity<>(OK);
