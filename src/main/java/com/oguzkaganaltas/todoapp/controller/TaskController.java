@@ -23,9 +23,9 @@ public class TaskController {
         return new ResponseEntity<>(this.taskService.getAllTasks(), OK);
     }
 
-    @GetMapping("/{task_id}")
-    public ResponseEntity<Task> getTask(@PathVariable int task_id){
-        return new ResponseEntity<>(getResult(task_id), OK);
+    @GetMapping("/{taskId}")
+    public ResponseEntity<Task> getTask(@PathVariable int taskId){
+        return new ResponseEntity<>(getResult(taskId), OK);
     }
 
 
@@ -33,27 +33,27 @@ public class TaskController {
         return taskService.getAllTasks().stream().anyMatch(obj -> obj.getId() == newTask.getId());
     }
 
-    @PostMapping("/new-task/{project_id}")
-    public ResponseEntity<Task> createTask(@PathVariable int project_id,@RequestBody Task newTask){
+    @PostMapping("/new-task/{projectId}")
+    public ResponseEntity<Task> createTask(@PathVariable int projectId,@RequestBody Task newTask){
         if (isAnyMatch(newTask)){
             return new ResponseEntity<>(CONFLICT);
         }
-        newTask.setProject(projectService.getProjectById(project_id));
+        newTask.setProject(projectService.getProjectById(projectId));
         return new ResponseEntity<>(this.taskService.createTask(newTask), CREATED);
     }
 
-    @PutMapping("/update/{task_id}")
-    public ResponseEntity<Task> updateTask(@PathVariable int task_id, @RequestBody Task newTask){
-        Task oldTask = getResult(task_id);
+    @PutMapping("/update/{taskId}")
+    public ResponseEntity<Task> updateTask(@PathVariable int taskId, @RequestBody Task newTask){
+        Task oldTask = getResult(taskId);
         oldTask.setStatus(newTask.isStatus());
         oldTask.setTitle(newTask.getTitle());
         oldTask.setNote(newTask.getNote());
         return new ResponseEntity<>(taskService.createTask(oldTask),OK);
     }
 
-    @DeleteMapping("/remove/{id}")
-    public ResponseEntity<Void> deleteTask(@PathVariable int id){
-        this.taskService.deleteTask(id);
+    @DeleteMapping("/remove/{taskId}")
+    public ResponseEntity<Void> deleteTask(@PathVariable int taskId){
+        this.taskService.deleteTask(taskId);
         return new ResponseEntity<>(OK);
     }
 
