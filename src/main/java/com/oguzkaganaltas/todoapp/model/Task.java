@@ -25,7 +25,7 @@ public class Task {
     private Date date = new Date();
     private boolean status;
 
-   @ManyToOne
-   @JoinColumn(name = "project_id")
-   private Project project;
+    @ManyToOne
+    @JoinColumn(name = "project_id")
+    private Project project;
 }
