@@ -53,6 +53,13 @@ public class UserService {
         return userRepository.findById(id)
                 .orElseThrow(() ->new RuntimeException("User not found"));
     }
+    public User getUserBySessionId(String sessionId){
+        User user = userRepository.findUserBySessionId(sessionId);
+        if (user == null) {
+            throw new RuntimeException("User not Found");
+        }
+        return user;
+    }
 
     public void updateUser(User user){
         userRepository.save(user);
