@@ -12,10 +12,6 @@ I had a lot of fun while making this demo, I had to learn so many things from sc
 ## How to run the Docker
 
     docker run --rm -ti -p 8080:8080 oguzkaganaltas/appcenttodoapp
-	
-	--rm: remove after closing terminal
-	-ti: interactive mode (by default you can't interact)
-	-p: port forwarding by default u cant access container u have to port forward
 
 
 # How to access the documentation
