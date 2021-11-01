@@ -22,7 +22,7 @@ public class Project {
     @Column(name = "name")
     private String name;
     @Column(name = "owner_id")
-    private int ownerId;
+    private long ownerId;
 
 
 }
