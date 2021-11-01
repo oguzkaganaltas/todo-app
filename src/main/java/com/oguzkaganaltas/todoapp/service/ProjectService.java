@@ -20,13 +20,29 @@ public class ProjectService {
         return projectRepository.save(newProject);
     }
 
-    public void deleteProject(int id){
-        projectRepository.deleteById(id);
+    public void deleteProject(int projectId, long ownerId){
+        projectRepository.deleteProjectById(projectId,ownerId);
     }
 
     public Project getProjectById(int id){
         return projectRepository.findById(id)
                 .orElseThrow(()->new RuntimeException("Project not found"));
+    }
+
+    public List<Project> getProjectsByOwnerId(long ownerId){
+        List<Project> projects = projectRepository.findProjectsByOwnerId(ownerId);
+        if (projects.isEmpty()) {
+            throw new RuntimeException("no projects found");
+        }
+        return projects;
+    }
+
+    public Project getProjectByOwnerId(long ownerId, int projectId){
+        Project project = projectRepository.findProjectByOwnerId(ownerId,projectId);
+        if (project == null) {
+            throw new RuntimeException("no projects found");
+        }
+        return project;
     }
 
 }
