@@ -13,7 +13,7 @@ import java.util.Objects;
 import static org.springframework.http.HttpStatus.*;
 
 @RestController
-@RequestMapping
+@RequestMapping("/api/v1")
 @AllArgsConstructor
 public class UserController {
 
