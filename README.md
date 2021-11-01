@@ -1,6 +1,6 @@
 # Spring Boot Backend Todo-App
 
-I had a lot of fun while making this demo, I had to learn so many things from beginning like Maven, Spring Boot, Sprint JPA, Lombok but it the end i think it was worth to experience this kinda development cycle.
+I had a lot of fun while making this demo, I had to learn so many things from scratch like Maven, Spring Boot, Sprint JPA, Lombok but it the end i think it was worth to experience this kind of development cycle.
 
 
 # How to run
